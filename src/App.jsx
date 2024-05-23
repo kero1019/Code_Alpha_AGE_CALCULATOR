@@ -46,9 +46,9 @@ function App() {
   // Function to handle form submission
   function handleSubmit(e) {
     e.preventDefault();
-    convertArabicToEnglish(date.days)
-    convertArabicToEnglish(date.months)
-    convertArabicToEnglish(date.years)
+    date.days = convertArabicToEnglish(date.days)
+    date.months = convertArabicToEnglish(date.months)
+    date.years = convertArabicToEnglish(date.years)
     let today = new Date();
     let birthDay = parseInt(date.days);
     let birthMonth = parseInt(date.months);
