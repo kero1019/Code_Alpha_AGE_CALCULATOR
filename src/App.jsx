@@ -27,10 +27,28 @@ function App() {
       return { ...prevDate, [name]: value };
     });
   }
-
+  // Function to convert numbers from arabic to english
+  function convertArabicToEnglish(input) {
+    const numbers = {
+      "٠": "0",
+      "١": "1",
+      "٢": "2",
+      "٣": "3",
+      "٤": "4",
+      "٥": "5",
+      "٦": "6",
+      "٧": "7",
+      "٨": "8",
+      "٩": "9",
+    };
+    return input.split("").map(num => numbers[num] || num).join("");
+  }
   // Function to handle form submission
   function handleSubmit(e) {
     e.preventDefault();
+    convertArabicToEnglish(date.days)
+    convertArabicToEnglish(date.months)
+    convertArabicToEnglish(date.years)
     let today = new Date();
     let birthDay = parseInt(date.days);
     let birthMonth = parseInt(date.months);
