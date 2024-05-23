@@ -1,0 +1,84 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+  font-family: "Open Sans", sans-serif;
+}
+
+* {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* Start  Media queries */
+/* Very Small Screens */
+@media (max-width:640px){
+  .part-1{
+  height: fit-content;
+  }
+  .part-1 div h1{
+    font-size: 1.5rem;
+  }
+  .line{
+    width: calc(100% + 10%);
+    left: -5%;
+  }
+  .small{
+    display: flex;
+    flex-direction: column;
+  }
+  .calculate{
+    font-size: 1.5rem;
+    width: fit-content;
+    padding: 10px;
+    margin-bottom: 20px;
+  }
+  .parent-result{
+    width: 80%;
+    align-items: center;
+  }
+  .result{
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  .result2{
+    width: 50%;
+    gap: 20px;
+  }
+  .one{
+    justify-content: left;
+  }
+
+}
+/* Small Screen */
+@media (min-width: 768px) {
+}
+
+/* medium Screen */
+@media (min-width: 992px) {
+}
+
+/* Large Screen */
+@media (min-width: 1200px) {
+}
+
+/* End Media queries */
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* End of Global Rules */
+.line {
+  background-color: #646464;
+  /* width: calc(100% + 50px); */
+  height: 1px;
+  position: absolute;
+  /* left: -25px; */
+}
+input:focus{
+  outline: none;
+}
