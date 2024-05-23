@@ -41,14 +41,17 @@ function App() {
       "٨": "8",
       "٩": "9",
     };
-    return input.split("").map(num => numbers[num] || num).join("");
+    return input
+      .split("")
+      .map((num) => numbers[num] || num)
+      .join("");
   }
   // Function to handle form submission
   function handleSubmit(e) {
     e.preventDefault();
-    date.days = convertArabicToEnglish(date.days)
-    date.months = convertArabicToEnglish(date.months)
-    date.years = convertArabicToEnglish(date.years)
+    date.days = convertArabicToEnglish(date.days);
+    date.months = convertArabicToEnglish(date.months);
+    date.years = convertArabicToEnglish(date.years);
     let today = new Date();
     let birthDay = parseInt(date.days);
     let birthMonth = parseInt(date.months);
