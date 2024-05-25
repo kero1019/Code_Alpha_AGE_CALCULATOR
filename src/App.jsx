@@ -8,6 +8,7 @@ function App() {
   const dayRef = React.useRef(null);
   const monthRef = React.useRef(null);
   const yearRef = React.useRef(null);
+  const scrollRef = React.useRef(null);
 
   React.useEffect(() => {
     function handleEnter(e) {
@@ -46,17 +47,27 @@ function App() {
       .map((num) => numbers[num] || num)
       .join("");
   }
+  // Function to clear inputs each time
+  function clearInputs(e){
+    e.target.select();
+  }
   // Function to handle form submission
   function handleSubmit(e) {
     e.preventDefault();
+    if (date.days === "" || date.months === "" || date.years === "") return;
     date.days = convertArabicToEnglish(date.days);
     date.months = convertArabicToEnglish(date.months);
     date.years = convertArabicToEnglish(date.years);
+
+    let shortMonths = [4, 6, 9, 11];
     let today = new Date();
     let birthDay = parseInt(date.days);
     let birthMonth = parseInt(date.months);
     let birthYear = parseInt(date.years);
     let days, years, months;
+    // ----------------------------------------------------
+
+    // ----------------------------------------------------
     if (
       !date.days ||
       !date.months ||
@@ -73,7 +84,9 @@ function App() {
       date.days != birthDay ||
       date.months != birthMonth ||
       date.years != birthYear ||
-      (birthYear % 4 !== 0 && birthMonth === 2 && birthDay >= 29)
+      (birthYear % 4 !== 0 && birthMonth === 2 && birthDay >= 29) ||
+      (birthYear % 4 === 0 && birthMonth === 2 && birthDay > 29) ||
+      (birthDay > 30 && shortMonths.includes(birthMonth))
     ) {
       setNotValid(true);
     } else {
@@ -98,6 +111,7 @@ function App() {
       months--;
     }
     setAge({ days, months, years });
+    if(scrollRef.current) scrollRef.current.scrollIntoView({ behavior: "smooth" });
   }
 
   return (
@@ -115,6 +129,7 @@ function App() {
             maxLength="2"
             placeholder={"01"}
             inputRef={dayRef}
+            onFocus ={clearInputs}
           />
           <InputField
             name={"months"}
@@ -123,6 +138,7 @@ function App() {
             maxLength="2"
             placeholder={"01"}
             inputRef={monthRef}
+            onFocus ={clearInputs}
           />
           <InputField
             name={"years"}
@@ -131,6 +147,7 @@ function App() {
             maxLength="4"
             placeholder={"1900"}
             inputRef={yearRef}
+            onFocus ={(e)=>clearInputs(e)}
           />
         </div>
         <button
@@ -142,13 +159,16 @@ function App() {
         </button>
       </form>
       {notValid ? (
-        <h2 className="text-red text-[1.5rem] ">Invalid Inputs </h2>
+        <h2 className="text-red text-[1.5rem] mb-4" ref={scrollRef}>Invalid Inputs </h2>
       ) : (
         <>
           {notValid === false ? (
             <div className="parent-result flex flex-col gap-5">
               <div className="flex flex-col items-center">
-                <p className=" uppercase text-[1.5rem] font-bold tracking-wider ">
+                <p
+                  className=" uppercase text-[1.5rem] font-bold tracking-wider "
+                  ref={scrollRef}
+                >
                   Results
                 </p>
                 <p className="bg-gray h-[0.01rem] w-1/2 "></p>

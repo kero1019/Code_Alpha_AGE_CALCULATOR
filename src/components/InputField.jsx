@@ -13,6 +13,7 @@ export default function InputField(props) {
 				type="text"
 				maxLength={props.maxLength}
 				ref = {props.inputRef}
+				onFocus={props.onFocus}
 				required
 			/>
 			<p className="w-full bg-gray h-[0.01rem] "></p>
