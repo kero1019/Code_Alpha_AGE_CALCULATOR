@@ -20,7 +20,7 @@ function App() {
     dayRef.current.addEventListener("keydown", handleEnter);
     monthRef.current.addEventListener("keydown", handleEnter);
     yearRef.current.addEventListener("keydown", handleEnter);
-  }, []);
+  }, [notValid]);
   // Function to handle the changes in each field
   function handleChange(e) {
     const { name, value } = e.target;
@@ -65,9 +65,6 @@ function App() {
     let birthMonth = parseInt(date.months);
     let birthYear = parseInt(date.years);
     let days, years, months;
-    // ----------------------------------------------------
-
-    // ----------------------------------------------------
     if (
       !date.days ||
       !date.months ||
@@ -111,7 +108,8 @@ function App() {
       months--;
     }
     setAge({ days, months, years });
-    if(scrollRef.current) scrollRef.current.scrollIntoView({ behavior: "smooth" });
+    // if(scrollRef.current) scrollRef.current.scrollIntoView({ behavior: "smooth" });
+    setTimeout(()=>{scrollRef.current.scrollIntoView({behavior: "smooth"})},0);
   }
 
   return (
