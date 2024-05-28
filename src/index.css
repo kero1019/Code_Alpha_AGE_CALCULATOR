@@ -15,7 +15,8 @@ body {
 /* Very Small Screens */
 @media (max-width:640px){
   .part-1{
-  height: fit-content;
+  height:100%; 
+  min-height: 100vh;;
   }
   .part-1 div h1{
     font-size: 1.5rem;
